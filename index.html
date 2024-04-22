@@ -48,7 +48,6 @@
             border-radius: 8px; /* Adjusted border radius */
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Enhanced box shadow */
         }
-
 </style>
 <div class="dropdown-container">
     <select id="dropdown" style="display: block; text-align:center; box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px">
@@ -88,13 +87,14 @@
         <option value="pan">PAN</option>
         <option value="passport">Passport</option>
         <option value="voterid">Voter ID</option>
-
     </select>
     <div class="details-box" id="details-box" style="display: block; text-align: center; width: 156%; margin-left: -41%; height: 385%; box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px">
         <h3 id="details-title"></h3>
         <p id="details-description"></p>
     </div>
 </div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 <script>
     document.getElementById('dropdown').addEventListener('change', function () {
         var selectedOption = this.value;
@@ -118,8 +118,10 @@
                 break;
 
             case "jiocinema":
+
                 title.textContent = 'Username: 7004038529';
-                description.textContent = 'Password: OTP';
+                //description.textContent = 'Password: OTP';
+                description.innerHTML = 'Password: OTP <a target = "_blank" href="https://www.jiocinema.com/activate?tv-activate=verify-tv-code&onboard=">Activate TV</a>';
 
                 break;
 
