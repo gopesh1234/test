@@ -1,0 +1,255 @@
+@{
+    Layout = null;
+}
+<style>
+    /* Dropdown styling */
+    .dropdown-container {
+        position: relative;
+        width: 250px; /* Increased width */
+        margin: 20px auto;
+    }
+
+    select {
+        width: 100%;
+        padding: 12px; /* Increased padding */
+        border: 2px solid #ccc;
+        border-radius: 8px; /* Adjusted border radius */
+        outline: none;
+        cursor: pointer;
+    }
+
+    /* Details box styling */
+    .details-box {
+        display: none;
+        position: absolute;
+        top: calc(100% + 10px);
+        left: 0;
+        width: 100%;
+        background-color: rgba(255, 255, 255, 0.9); /* Transparent white background */
+        border: 2px solid #ccc;
+        border-radius: 12px; /* Increased border radius */
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Enhanced box shadow */
+        padding: 20px;
+    }
+
+        .details-box h3 {
+            margin-top: 0;
+            font-size: 24px; /* Increased font size */
+            color: #333333;
+        }
+
+        .details-box p {
+            color: #666666;
+            line-height: 1.6;
+        }
+
+        .details-box img {
+            display: block;
+            max-width: 100%;
+            height: auto;
+            margin-top: 20px; /* Increased margin */
+            border-radius: 8px; /* Adjusted border radius */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Enhanced box shadow */
+        }
+
+</style>
+<div class="dropdown-container">
+    <select id="dropdown" style="display: block; text-align:center; box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px">
+        <option value="" selected disabled>Select an option</option>
+        <option style="background-color:orange; color:white; font-size:larger" value="ott" disabled>OTT</option>
+
+        <option value="amazon">Amazon</option>
+        <option value="hotstar">Hotstar</option>
+        <option value="jiocinema">Jio Cinema</option>
+        <option value="netflix">Netflix</option>
+        <option value="sonyliv">Sony Liv</option>
+        <option value="zee5">Zee5</option>
+
+        <option style="background-color:orange; color:white; font-size:larger" value="banks" disabled>Banks</option>
+
+        <option value="axis">AXIS</option>
+        <option value="hdfc">HDFC</option>
+        <option value="icici">ICICI</option>
+        <option value="idfc">IDFC</option>
+        <option value="kotak">KOTAK</option>
+        <option value="sbi">SBI</option>
+        <option value="union">UNION</option>
+
+        <option style="background-color:orange; color:white; font-size:larger" value="invest" disabled>Investment</option>
+
+        <option value="apy">APY</option>
+        <option value="epf">EPF</option>
+        <option value="nps">NPS</option>
+        <option value="pli">PLI</option>
+        <option value="ppf">PPF</option>
+
+        <option style="background-color:orange; color:white; font-size:larger" value="insur" disabled>Insurance</option>
+
+        <option style="background-color:orange; color:white; font-size:larger" value="other" disabled>Others</option>
+
+        <option value="aadhar">Aadhar</option>
+        <option value="pan">PAN</option>
+        <option value="passport">Passport</option>
+        <option value="voterid">Voter ID</option>
+
+    </select>
+    <div class="details-box" id="details-box" style="display: block; text-align: center; width: 156%; margin-left: -41%; height: 385%; box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px">
+        <h3 id="details-title"></h3>
+        <p id="details-description"></p>
+    </div>
+</div>
+<script>
+    document.getElementById('dropdown').addEventListener('change', function () {
+        var selectedOption = this.value;
+        var detailsBox = document.getElementById('details-box');
+        var title = document.getElementById('details-title');
+        var description = document.getElementById('details-description');
+
+        switch (selectedOption) {
+
+            // OTT
+            case "amazon":
+                title.textContent = 'Username: 8505949039';
+                description.textContent = 'Password: Gopesh111#';
+
+                break;
+
+            case "hotstar":
+                title.textContent = 'Username: 8505949039';
+                description.textContent = 'Password: OTP';
+
+                break;
+
+            case "jiocinema":
+                title.textContent = 'Username: 7004038529';
+                description.textContent = 'Password: OTP';
+
+                break;
+
+            case "netflix":
+                title.textContent = 'Username: kumargopesh64@gmail.com';
+                description.textContent = 'Password: Gopesh111#';
+
+                break;
+
+            case "sonyliv":
+                title.textContent = 'Username: 8505949039';
+                description.textContent = 'Password: OTP';
+
+                break;
+
+            case "zee5":
+                title.textContent = 'Username: 8505949039';
+                description.textContent = 'Password: OTP';
+
+                break;
+
+            // Bank
+            case "hdfc":
+                title.textContent = 'Customer Id: 118052350 (Pin: 8814)';
+                description.textContent = 'Password: Gopesh111$ (No: 8505949039, Account No: 50100337582568, IFSC: ###, Branch: Opposite Suri School, Madhubani, 847211)';
+
+                break;
+
+            case "idfc":
+                title.textContent = 'Customer ID: 1022116117 (Account No: 10175989689 & IFSC: ###)';
+                description.textContent = 'Internet Banking (Number & Password): 8505949039 (Pwc#*&#2024) ACCOUNT BRANCH : Boring Road Branch, 800001';
+
+                break;
+
+            case "sbi":
+                title.textContent = 'Username: kumargopesh (Account No: ### & IFSC: ###)';
+                description.textContent = 'Password: Gopesh222₹ (Madhubani Main Branch, Red Cross, 847211)';
+
+                break;
+
+            case "kotak":
+                title.textContent = 'CRN/Username: 118520412 or kumargopesh (Account No: ### & IFSC: ###)';
+                description.textContent = 'Password: Gopesh111₹ (Registered No: 7004038529)';
+
+                break;
+
+            case "icici":
+                title.textContent = 'User ID: 583421821 (Account No: ### & IFSC: ###)';
+                description.textContent = 'Password: Gopesh222& (Registered No: 8505949039)';
+
+                break;
+
+            case "axis":
+                title.textContent = 'User ID: 964282124 (Account No: ### & IFSC: ###)';
+                description.textContent = 'Password: Gopesh222& (Registered No: 8505949039)';
+
+                break;
+
+            case "union":
+                title.textContent = 'User ID: 252548023 (Account No: 639102010003640 & IFSC: ###)';
+                description.textContent = 'Password & Trans Pass: Gopesh1$ & Gopesh1%$ (Registered No & Email: 8505949039, kumargopesh64@gmail.com)';
+
+                break;
+
+            // Insurance and Investment
+            case "pli":
+                title.textContent = 'Username: 81536204';
+                description.textContent = 'Password: Gopesh111_';
+
+                break;
+
+            case "nps":
+                title.textContent = 'PRAN: 110195701405';
+                description.textContent = 'Password: Gopesh111%';
+
+                break;
+
+            //ITR:DVHPK6223G,Gopesh1%
+
+            case "apy":
+                title.textContent = 'PRAN: 500696981479';
+                description.textContent = 'Password: OTP (8505949039)';
+
+                break;
+
+            case "ppf":
+                title.textContent = 'Account: 63910PPF000000000015';
+                description.textContent = 'Linked with Union Bank (Branch: Opposite Post office, 847211)';
+
+                break;
+
+            case "epf":
+                title.textContent = 'UAN: 101589172921';
+                description.textContent = 'Password: Gopesh11$ (Passbook for Member Id : [GNGGN19505400000020384])';
+
+                break;
+
+
+            case "aadhar":
+                title.textContent = '958909176656';
+                description.textContent = 'Contact: 8505949039';
+
+                break;
+
+
+            case "pan":
+                title.textContent = 'DVHPK6223G';
+                description.textContent = 'Contact: 8505949039';
+
+                break;
+
+            case "passport":
+                title.textContent = 'Number: ###';
+                description.textContent = 'User ID and Passw: KUMARGOPESH64@GMAIL.COM & Gopesh111$';
+
+                break;
+
+            case "voterid":
+                title.textContent = 'User ID: 8505949039 (Voter ID: YEZ1849272)';
+                description.textContent = 'Password: Gopesh11!';
+
+                break;
+
+            default: break;
+        }
+
+        detailsBox.style.display = 'block';
+    });
+
+</script>
