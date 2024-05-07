@@ -1,300 +1,654 @@
-<style>
-    /* Dropdown styling */
-    .dropdown-container {
-        position: relative;
-        width: 250px; /* Increased width */
-        margin: 20px auto;
-    }
-
-    select {
-        width: 100%;
-        padding: 12px; /* Increased padding */
-        border: 2px solid #ccc;
-        border-radius: 8px; /* Adjusted border radius */
-        outline: none;
-        cursor: pointer;
-    }
-
-    /* Details box styling */
-    .details-box {
-        display: none;
-        position: absolute;
-        top: calc(100% + 10px);
-        left: 0;
-        width: 100%;
-        background-color: rgba(255, 255, 255, 0.9); /* Transparent white background */
-        border: 2px solid #ccc;
-        border-radius: 12px; /* Increased border radius */
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Enhanced box shadow */
-        padding: 20px;
-    }
-
-        .details-box h3 {
-            margin-top: 0;
-            font-size: 24px; /* Increased font size */
-            color: #333333;
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Savings Options</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
         }
 
-        .details-box p {
-            color: #666666;
-            line-height: 1.6;
+        .container {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 16px;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
         }
 
-        .details-box img {
-            display: block;
-            max-width: 100%;
-            height: auto;
-            margin-top: 20px; /* Increased margin */
-            border-radius: 8px; /* Adjusted border radius */
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Enhanced box shadow */
+        h1 {
+            text-align: center;
         }
-</style>
-<div class="dropdown-container">
-    <select id="dropdown" style="display: block; text-align:center; box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px">
-        <option value="" selected disabled>Select an option</option>
-        <option style="background-color:orange; color:white; font-size:larger" value="ott" disabled>OTT</option>
 
-        <option value="amazon">Amazon</option>
-        <option value="hotstar">Hotstar</option>
-        <option value="jiocinema">Jio Cinema</option>
-        <option value="netflix">Netflix</option>
-        <option value="sonyliv">Sony Liv</option>
-        <option value="zee5">Zee5</option>
+        form {
+            margin-top: 20px;
+        }
 
-        <option style="background-color:orange; color:white; font-size:larger" value="insur" disabled>Social Media</option>
+        .form-group {
+            margin-bottom: 20px;
+        }
 
-        <option value="insta">Insta</option>
-        <option value="link">LinkedIn</option>
-        <option value="udemy">Udemy</option>
+            .form-group label {
+                display: block;
+                font-weight: bold;
+            }
 
-        <option style="background-color:orange; color:white; font-size:larger" value="banks" disabled>Banks</option>
+            .form-group input[type="text"] {
+                width: 100%;
+                padding: 8px;
+                border: 1px solid #ccc;
+                border-radius: 3px;
+                box-sizing: border-box;
+            }
 
-        <option value="axis">AXIS</option>
-        <option value="fed">Federal</option>
-        <option value="hdfc">HDFC</option>
-        <option value="icici">ICICI</option>
-        <option value="idfc">IDFC</option>
-        <option value="kotak">KOTAK</option>
-        <option value="sbi">SBI</option>
-        <option value="union">UNION</option>
-        <option value="mom-union">MOM UNION</option>
+            .form-group button {
+                padding: 8px 16px;
+                background-color: #4caf50;
+                color: #fff;
+                border: none;
+                border-radius: 3px;
+                cursor: pointer;
+            }
 
-        <option style="background-color:orange; color:white; font-size:larger" value="invest" disabled>Investment</option>
+        .savings-list {
+            list-style-type: none;
+            padding: 0;
+        }
 
-        <option value="apy">APY</option>
-        <option value="epf">EPF</option>
-        <option value="nps">NPS</option>
-        <option value="pli">PLI</option>
-        <option value="ppf">PPF</option>
+        .savings-item {
+            background-color: #f9f9f9;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 3px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
 
-        <option style="background-color:orange; color:white; font-size:larger" value="insur" disabled>Insurance</option>
+            .savings-item button {
+                background-color: #f44336;
+                color: #fff;
+                border: none;
+                border-radius: 3px;
+                cursor: pointer;
+                padding: 5px 10px;
+                margin-left: 10px;
+            }
 
-        <option style="background-color:orange; color:white; font-size:larger" value="other" disabled>My Details</option>
+        #total {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 18px;
+        }
 
-        <option value="aadhar">Aadhar</option>
-        <option value="itr">ITR</option>
-        <option value="pan">PAN</option>
-        <option value="passport">Passport</option>
-        <option value="voterid">Voter ID</option>
-    </select>
-    <div class="details-box" id="details-box" style="display: block; text-align: center; width: 156%; margin-left: -41%; height: 385%; box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px">
-        <h3 id="details-title"></h3>
-        <p id="details-description"></p>
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .section {
+            padding: 20px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+
+        #toggleButtons {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .toggleButton {
+            padding: 10px 20px;
+            margin: 0 10px;
+            background-color: brown;
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            border-radius: 30px;
+            margin-bottom: 15px;
+        }
+
+        .dropdown-container {
+            position: relative;
+            width: 250px;
+            margin: 20px auto;
+        }
+
+        select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ccc;
+            border-radius: 8px;
+            outline: none;
+            cursor: pointer;
+        }
+
+        .details-box {
+            display: none;
+            position: absolute;
+            top: calc(100% + 10px);
+            left: 0;
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0.9);
+            border: 2px solid #ccc;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            padding: 20px;
+        }
+
+            .details-box h3 {
+                margin-top: 0;
+                font-size: 24px;
+                color: #333333;
+            }
+
+            .details-box p {
+                color: #666666;
+                line-height: 1.6;
+            }
+
+            .details-box img {
+                display: block;
+                max-width: 100%;
+                height: auto;
+                margin-top: 20px;
+                border-radius: 8px;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            }
+
+        .blur {
+            filter: blur(5px);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container blur">
+        <div id="toggleButtons">
+            <button id="savingsButton" class="toggleButton">Savings</button>
+            <button id="textBoxButton" class="toggleButton">Details</button>
+        </div>
+        <div id="savingsSection" class="section">
+            <hr />
+            <div id="total" style="font-weight:bold"></div>
+            <hr />
+            <form id="savingsForm">
+                <div class="form-group">
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" name="name" required autocomplete="off" />
+                </div>
+                <div class="form-group">
+                    <label for="amount">Amount:</label>
+                    <input type="text" id="amount" name="amount" required autocomplete="off" />
+                </div>
+                <button type="submit">Add Data</button>
+                <button id="clear-local-data" style="float: right; margin-left: 10px;">Clear</button>
+                <button id="clear-local-data-byName" style="float: right;">Clear By Name</button>
+                <hr />
+            </form>
+
+            <ul class="savings-list" id="savingsList" style="height: 1000px; overflow: scroll;">
+                <!-- Savings options will be dynamically added here -->
+            </ul>
+        </div>
+
+        <div id="textBoxSection" class="section" style="display: none; height: 325px;">
+            <div class="dropdown-container">
+                <select id="dropdown" style="display: block; text-align:center; box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px">
+                    <option value="" selected disabled>Select an option</option>
+                    <option style="background-color:orange; color:white; font-size:larger" value="ott" disabled>OTT</option>
+
+                    <option value="amazon">Amazon</option>
+                    <option value="hotstar">Hotstar</option>
+                    <option value="jiocinema">Jio Cinema</option>
+                    <option value="netflix">Netflix</option>
+                    <option value="sonyliv">Sony Liv</option>
+                    <option value="zee5">Zee5</option>
+
+                    <option style="background-color:orange; color:white; font-size:larger" value="insur" disabled>Social Media</option>
+
+                    <option value="git">GIT</option>
+                    <option value="insta">Insta</option>
+                    <option value="link">LinkedIn</option>
+                    <option value="udemy">Udemy</option>
+
+                    <option style="background-color:orange; color:white; font-size:larger" value="banks" disabled>Banks</option>
+
+                    <option value="axis">AXIS</option>
+                    <option value="fed">Federal</option>
+                    <option value="hdfc">HDFC</option>
+                    <option value="icici">ICICI</option>
+                    <option value="idfc">IDFC</option>
+                    <option value="kotak">KOTAK</option>
+                    <option value="union">UNION</option>
+                    <option value="mom-union">MOM UNION</option>
+                    <option value="sbi">SBI</option>
+
+                    <option style="background-color:orange; color:white; font-size:larger" value="invest" disabled>Investment</option>
+
+                    <option value="apy">APY</option>
+                    <option value="epf">EPF</option>
+                    <option value="nps">NPS</option>
+                    <option value="pli">PLI</option>
+                    <option value="ppf">PPF</option>
+
+                    <option style="background-color:orange; color:white; font-size:larger" value="insur" disabled>Insurance</option>
+
+                    <option style="background-color:orange; color:white; font-size:larger" value="other" disabled>My Details</option>
+
+                    <option value="aadhar">Aadhar</option>
+                    <option value="itr">ITR</option>
+                    <option value="pan">PAN</option>
+                    <option value="passport">Passport</option>
+                    <option value="voterid">Voter ID</option>
+                </select>
+                <div class="details-box" id="details-box" style="display: block; text-align: center; width: 156%; margin-left: -41%; height: 385%; box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px">
+                    <h5 id="details-title"></h5>
+                    <p id="details-description"></p>
+                </div>
+            </div>
+        </div>
     </div>
-</div>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-<script>
-    document.getElementById('dropdown').addEventListener('change', function () {
-        var selectedOption = this.value;
-        var detailsBox = document.getElementById('details-box');
-        var title = document.getElementById('details-title');
-        var description = document.getElementById('details-description');
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
 
-        switch (selectedOption) {
+        // Function to toggle visibility of sections
+        function toggleSections(sectionToShow) {
+            var savingsSection = document.getElementById("savingsSection");
+            var textBoxSection = document.getElementById("textBoxSection");
 
-            // OTT
-            case "amazon":
-                title.textContent = 'Username: 8505949039';
-                description.textContent = 'Password: Gopesh111#';
-
-                break;
-
-            case "hotstar":
-                title.textContent = 'Username: 8505949039';
-                description.textContent = 'Password: OTP';
-
-                break;
-
-            case "jiocinema":
-
-                title.textContent = 'Username: 7004038529';
-                //description.textContent = 'Password: OTP';
-                description.innerHTML = 'Password: OTP <a target = "_blank" href="https://www.jiocinema.com/activate?tv-activate=verify-tv-code&onboard=">Activate TV</a>';
-
-                break;
-
-            case "netflix":
-                title.textContent = 'Username: kumargopesh64@gmail.com';
-                description.textContent = 'Password: Gopesh111#';
-
-                break;
-
-            case "sonyliv":
-                title.textContent = 'Username: 8505949039';
-                description.textContent = 'Password: OTP';
-
-                break;
-
-            case "zee5":
-                title.textContent = 'Username: 8505949039';
-                description.textContent = 'Password: OTP';
-
-                break;
-
-            // Social Media
-            case "insta":
-                title.textContent = 'Username: 8505949039';
-                description.textContent = 'Password: Gopesh22%$';
-
-                break;
-
-            case "link":
-                title.textContent = 'Username: kumargopesh64@gmail.com';
-                description.textContent = 'Password: Gopesh11&';
-
-                break;
-
-            case "udemy":
-                title.textContent = 'Username: kumargopesh64@gmail.com';
-                description.textContent = 'Password: Gopesh11&';
-
-                break;
-
-            // Bank
-            case "hdfc":
-                title.textContent = 'Customer Id: 118052350 (Pin: 8814)';
-                description.textContent = 'Password: Gopesh111$ (No: 8505949039, Account No: 50100337582568, IFSC: ###, Branch: Opposite Suri School, Madhubani, 847211)';
-
-                break;
-
-            case "fed":
-                title.textContent = '(Account No: 77770131489508 & IFSC: FDRL0007777)'
-                description.textContent = 'PIN: 817595 (Branch Name: Neo Banking - Jupiter => UPI Id: 8505949039@jupiteraxis => Customer ID: FDRLINBBIBD)';
-
-                break;
-
-            case "idfc":
-                title.textContent = 'Customer ID: 1022116117 (Account No: 10175989689 & IFSC: ###)';
-                description.textContent = 'Internet Banking (Number & Password): 8505949039 (Pwc#*&#2024) ACCOUNT BRANCH : Boring Road Branch, 800001';
-
-                break;
-
-            case "sbi":
-                title.textContent = 'Username: kumargopesh (Account No: ### & IFSC: ###)';
-                description.textContent = 'Password: Gopesh222₹ (Madhubani Main Branch, Red Cross, 847211)';
-
-                break;
-
-            case "kotak":
-                title.textContent = 'CRN/Username: 118520412 or kumargopesh (Account No: ### & IFSC: ###)';
-                description.textContent = 'Password: Gopesh111₹ (Registered No: 7004038529)';
-
-                break;
-
-            case "icici":
-                title.textContent = 'User ID: 583421821 (Account No: ### & IFSC: ###)';
-                description.textContent = 'Password: Gopesh222& (Registered No: 8505949039)';
-
-                break;
-
-            case "axis":
-                title.textContent = 'User ID: 964282124 (Account No: ### & IFSC: ###)';
-                description.textContent = 'Password: Gopesh222& (Registered No: 8505949039)';
-
-                break;
-
-            case "union":
-                title.textContent = 'User ID: 252548023 (Account No: 639102010003640 & IFSC: UBIN0563919)';
-                description.textContent = 'Password & Trans Pass: Gopesh1$ & Gopesh1%$ (Registered No & Email: 8505949039, kumargopesh64@gmail.com)';
-
-                break;
-
-            case "mom-union":
-                title.textContent = 'User ID: Activate Net Banking (Account No: 639102010011285 & IFSC: UBIN0563919)';
-                description.textContent = 'Password & Trans Pass: Activate Net Banking (Registered No & Email: 9334509090, kumargopesh64@gmail.com)';
-
-                break;
-
-            // Insurance and Investment
-            case "pli":
-                title.textContent = 'Username: 81536204';
-                description.textContent = 'Password: Gopesh111_';
-
-                break;
-
-            case "nps":
-                title.textContent = 'PRAN: 110195701405';
-                description.textContent = 'Password: Gopesh111%';
-
-                break;
-
-
-            case "apy":
-                title.textContent = 'PRAN: 500696981479';
-                description.textContent = 'Password: OTP (8505949039)';
-
-                break;
-
-            case "ppf":
-                title.textContent = 'Account: 63910PPF000000000015';
-                description.textContent = 'Linked with Union Bank (Branch: Opposite Post office, 847211)';
-
-                break;
-
-            case "epf":
-                title.textContent = 'UAN: 101589172921';
-                description.textContent = 'Password: Gopesh11$ (Passbook for Member Id : [GNGGN19505400000020384])';
-
-                break;
-
-
-            // My Details
-            case "aadhar":
-                title.textContent = '958909176656';
-                description.textContent = 'Contact: 8505949039';
-
-                break;
-
-            case "itr":
-                title.textContent = 'PAN(username): DVHPK6223G';
-                description.textContent = 'Pass: Gopesh1% (Primary No: 8505949039)';
-
-                break;
-
-
-            case "pan":
-                title.textContent = 'DVHPK6223G';
-                description.textContent = 'Contact: 8505949039';
-
-                break;
-
-            case "passport":
-                title.textContent = 'Number: X9482821';
-                description.textContent = 'User ID and Passw: KUMARGOPESH64@GMAIL.COM & Gopesh111$';
-
-                break;
-
-            case "voterid":
-                title.textContent = 'User ID: 8505949039 (Voter ID: YEZ1849272)';
-                description.textContent = 'Password: Gopesh11!';
-
-                break;
-
-            default: break;
+            if (sectionToShow === "savings") {
+                savingsSection.style.display = "block";
+                textBoxSection.style.display = "none";
+            } else if (sectionToShow === "textBox") {
+                savingsSection.style.display = "none";
+                textBoxSection.style.display = "block";
+            }
         }
 
-        detailsBox.style.display = 'block';
-    });
+        // Add event listeners to toggle buttons
+        document.getElementById("savingsButton").addEventListener("click", function () {
+            toggleSections("savings");
+        });
 
-</script>
+        document.getElementById("textBoxButton").addEventListener("click", function () {
+            toggleSections("textBox");
+        });
+
+        // Save data to localStorage
+        function saveData(name, amount) {
+            var data = JSON.parse(localStorage.getItem("savingsData")) || [];
+            data.push({ name: name, amount: amount });
+            localStorage.setItem("savingsData", JSON.stringify(data));
+        }
+
+        // Get data from localStorage
+        function getData() {
+            return JSON.parse(localStorage.getItem("savingsData")) || [];
+        }
+
+        // Function to add savings option to the list
+        function addSavingsOption(name, amount) {
+            var savingsList = document.getElementById("savingsList");
+            var li = document.createElement("li");
+            li.className = "savings-item";
+
+            li.innerHTML = "<strong>" + name + " : ₹" + amount + " </strong> <button onclick=\"editSavingsOption('" + name + "', " + amount + ", this)\" style='float: right;'>Edit</button>";
+            savingsList.appendChild(li);
+        }
+
+        // Function to update the total savings displayed
+        function updateTotal(totalSavings) {
+            document.getElementById("total").textContent = "Total Savings: ₹" + totalSavings;
+        }
+
+        function updateTotalLocked(totalSavings) {
+            document.getElementById("total-locked").textContent = "Locked Savings: ₹" + totalSavings;
+        }
+
+        // Function to handle form submission
+        function handleSubmit(event) {
+            event.preventDefault();
+            var name = document.getElementById("name").value;
+            var amount = parseFloat(document.getElementById("amount").value);
+            if (name.trim() === "" || isNaN(amount) || amount <= 0) {
+                alert("Please fill in valid name and amount.");
+                return;
+            }
+            saveData(name.trim(), amount);
+            addSavingsOption(name, amount);
+            totalSavings += amount;
+            updateTotal(totalSavings);
+            document.getElementById("savingsForm").reset();
+        }
+
+        // Function to handle editing a savings option
+        function editSavingsOption(name, amount, button) {
+            var li = button.parentElement;
+            //var name = li.firstChild.textContent.split(":")[0];
+            name = name.trim();
+
+            //var amount = parseFloat(li.textContent.match(/\d+\.\d+/)[0]);
+            //var newName = prompt("Enter new name:", name);
+            var newAmount = parseFloat(prompt("Enter new amount:", amount));
+            if (!isNaN(newAmount) && newAmount > 0) {
+                li.firstChild.textContent = name + " : ₹" + newAmount;
+                var data = getData();
+                var itemIndex = data.findIndex(item => item.name === name && item.amount === amount);
+                if (itemIndex !== -1) {
+                    data[itemIndex] = { name: name, amount: newAmount };
+                    localStorage.setItem("savingsData", JSON.stringify(data));
+                }
+                totalSavings += (newAmount - amount);
+                updateTotal(totalSavings);
+            }
+        }
+
+        // Initialize total savings variable
+        var totalSavings = 0;
+
+        document.getElementById('clear-local-data-byName').addEventListener('click', function (event) {
+
+            event.preventDefault();
+
+            var removeKey = prompt("Enter name:");
+            var parsedData = JSON.parse(localStorage.savingsData);
+
+            var filteredData = parsedData.filter(function (item) {
+                return item.name !== removeKey.trim();
+            });
+
+            localStorage.setItem("savingsData", JSON.stringify(filteredData));
+
+        });
+
+        document.getElementById('clear-local-data').addEventListener('click', function (event) {
+
+            event.preventDefault();
+
+            var code = prompt("Enter code:");
+
+            if (code.trim() == "0000")
+                localStorage.clear();
+        });
+        // Add event listener to form submission
+        document.getElementById("savingsForm").addEventListener("submit", handleSubmit);
+
+        // Retrieve saved data and display on page load
+        window.addEventListener("load", function () {
+
+            //removeBlur();
+
+            var code = prompt("Enter security code:");
+
+            if (code.trim() != "9000") {
+                window.location.href = "https://www.google.com/";
+            }
+            else {
+
+                removeBlur();
+
+                var savedData = getData();
+                savedData.forEach(function (item) {
+                    addSavingsOption(item.name, item.amount);
+                    totalSavings += item.amount;
+                });
+                updateTotal(totalSavings);
+            }
+        });
+
+        function removeBlur() {
+
+            var container = document.querySelector(".container");
+            container.classList.remove("blur");
+        }
+
+        document.getElementById('dropdown').addEventListener('change', function () {
+            var selectedOption = this.value;
+            var detailsBox = document.getElementById('details-box');
+            var title = document.getElementById('details-title');
+            var description = document.getElementById('details-description');
+
+            switch (selectedOption) {
+
+                // OTT
+                case "amazon":
+                    title.textContent = 'Username: 8505949039';
+                    description.textContent = 'Password: Gopesh111#';
+
+                    break;
+
+                case "hotstar":
+                    title.textContent = 'Username: 8505949039';
+                    description.textContent = 'Password: OTP';
+
+                    break;
+
+                case "jiocinema":
+
+                    title.textContent = 'Username: 7004038529';
+                    //description.textContent = 'Password: OTP';
+                    description.innerHTML = 'Password: OTP <a target = "_blank" href="https://www.jiocinema.com/activate?tv-activate=verify-tv-code&onboard=">Activate TV</a>';
+
+                    break;
+
+                case "netflix":
+                    title.textContent = 'Username: kumargopesh64@gmail.com';
+                    description.textContent = 'Password: Gopesh111#';
+
+                    break;
+
+                case "sonyliv":
+                    title.textContent = 'Username: 8505949039';
+                    description.textContent = 'Password: OTP';
+
+                    break;
+
+                case "zee5":
+                    title.textContent = 'Username: 8505949039';
+                    description.textContent = 'Password: OTP';
+
+                    break;
+
+                // Social Media
+                case "git":
+                    title.textContent = 'Username: kumargopesh64@gmail.com';
+                    description.textContent = 'Password: Gopesh111%';
+
+                    break;
+
+                case "insta":
+                    title.textContent = 'Username: 8505949039';
+                    description.textContent = 'Password: Gopesh22%$';
+
+                    break;
+
+                case "link":
+                    title.textContent = 'Username: kumargopesh64@gmail.com';
+                    description.textContent = 'Password: Gopesh11&';
+
+                    break;
+
+                case "udemy":
+                    title.textContent = 'Username: kumargopesh64@gmail.com';
+                    description.textContent = 'Password: Gopesh11&';
+
+                    break;
+
+                // Bank
+
+                case "axis":
+                    title.textContent = 'User ID: 964282124 (Account No: 924010014993554 & IFSC: UTIB0001486 & MICR Code: 847211002)';
+                    //description.textContent = 'Password: Gopesh111& (Registered No: 8505949039)';
+                    description.innerHTML = 'Password: Gopesh111& (Registered No: 8505949039) <br> <a target = "_blank" href="https://omni.axisbank.co.in/axisretailbanking/">Internet Banking</a>';
+
+                    break;
+
+                case "fed":
+                    title.textContent = '(Account No: 77770131489508 & IFSC: FDRL0007777)'
+                    //description.textContent = 'PIN: 817595 (Branch Name: Neo Banking - Jupiter => UPI Id: 8505949039@jupiteraxis => Customer ID: FDRLINBBIBD)';
+                    description.innerHTML = 'PIN: 817595 (Branch Name: Neo Banking - Jupiter => UPI Id: 8505949039@jupiteraxis => Customer ID: FDRLINBBIBD) <br> <a target = "_blank" href="https://www.fednetbank.com/corp/AuthenticationController?__START_TRAN_FLAG__=Y&FORMSGROUP_ID__=AuthenticationFG&__EVENT_ID__=LOAD&FG_BUTTONS__=LOAD&ACTION.LOAD=Y&AuthenticationFG.LOGIN_FLAG=1&BANK_ID=049&LANGUAGE_ID=001">Internet Banking</a>';
+
+                    break;
+
+                case "hdfc":
+                    title.textContent = 'Customer Id: 118052350 (Pin: 8814) || (Account No: 50100337582568, IFSC: HDFC0002750 & MICR Code: 847240002)';
+                    //description.textContent = 'Password: Gopesh111$ (No: 8505949039, Branch: Opposite Suri School, Madhubani, 847211)';
+                    description.innerHTML = 'Password: Gopesh111$ (No: 8505949039, Branch: Opposite Suri School, Madhubani, 847211) <br> <a target = "_blank" href="https://netbanking.hdfcbank.com/netbanking/">Internet Banking</a>';
+
+                    break;
+
+                case "icici":
+                    title.textContent = 'User ID: 583421821 (Account No: 132801002647 & IFSC: ICIC0001328 & MICR Code: 847229002)';
+                    //description.textContent = 'Password: Gopesh222& (Registered No: 8505949039)';
+                    description.innerHTML = 'Password: Gopesh222& (Registered No: 8505949039) <br> <a target = "_blank" href="https://infinity.icicibank.com/corp/AuthenticationController?FORMSGROUP_ID__=AuthenticationFG&__START_TRAN_FLAG__=Y&FG_BUTTONS__=LOAD&ACTION.LOAD=Y&AuthenticationFG.LOGIN_FLAG=1&BANK_ID=ICI&ITM=nli_personalb_personal_login_btn&_gl=1*30xkeg*_ga*MTgzMDcxOTY5Ni4xNjIwMDM5NDU0*_ga_SKB78GHTFV*MTYyODIzNDM4NC43Ny4xLjE2MjgyMzQ1MDQuMjc.&_ga=2.70172176.1476228255.1714851347-601298001.1712584275">Internet Banking</a>';
+
+                    break;
+
+                case "idfc":
+                    title.textContent = 'Customer ID: 1022116117 (Account No: 10175989689 & IFSC: IDFB0060281)';
+                    //description.textContent = 'Internet Banking (Number & Password): 8505949039/8521007007 (Pwc#*&#2024) ACCOUNT BRANCH : Boring Road Branch, 800001';
+                    description.innerHTML = 'Internet Banking (Number & Password): 8505949039 (Pwc#*&#2024) ACCOUNT BRANCH : Boring Road Branch, 800001 <br> <a target = "_blank" href="https://my.idfcfirstbank.com/login">Internet Banking</a>';
+
+                    break;
+
+                case "kotak":
+                    title.textContent = 'CRN/Username: 118520412 or kumargopesh (Account No: 1848397833 & IFSC: KKBK0005653)';
+                    //description.textContent = 'Password: Gopesh111₹ (Registered No: 7004038529)';
+                    description.innerHTML = 'Password: Gopesh111₹ (Registered No: 7004038529) <br> <a target = "_blank" href="https://netbanking.kotak.com/knb2/">Internet Banking</a>';
+
+                    break;
+
+
+                case "union":
+                    title.textContent = 'User ID: 252548023 (Account No: 639102010003640 & IFSC: UBIN0563919)';
+                    //description.textContent = 'Password & Trans Pass: Gopesh1$ & Gopesh1%$ (Registered No & Email: 8505949039, kumargopesh64@gmail.com)';
+                    description.innerHTML = 'Password & Trans Pass: Gopesh1$ & Gopesh1%$ (Registered No & Email: 8505949039, kumargopesh64@gmail.com) <br> <a target = "_blank" href="https://www.unionbankonline.co.in/corp/AuthenticationController?__START_TRAN_FLAG__=Y&FORMSGROUP_ID__=AuthenticationFG&__EVENT_ID__=LOAD&FG_BUTTONS__=LOAD&ACTION.LOAD=Y&AuthenticationFG.LOGIN_FLAG=1&BANK_ID=026&LANGUAGE_ID=001">Internet Banking</a>';
+
+                    break;
+
+                case "mom-union":
+                    title.textContent = 'User ID: Activate Net Banking (Account No: 639102010011285 & IFSC: UBIN0563919)';
+                    //description.textContent = 'Password & Trans Pass: Activate Net Banking (Registered No & Email: 9334509090, kumargopesh64@gmail.com)';
+                    description.innerHTML = 'Password & Trans Pass: Activate Net Banking (Registered No & Email: 9334509090, gopeshk33@gmail.com) <br> <a target = "_blank" href="https://www.unionbankonline.co.in/corp/AuthenticationController?__START_TRAN_FLAG__=Y&FORMSGROUP_ID__=AuthenticationFG&__EVENT_ID__=LOAD&FG_BUTTONS__=LOAD&ACTION.LOAD=Y&AuthenticationFG.LOGIN_FLAG=1&BANK_ID=026&LANGUAGE_ID=001">Internet Banking</a>';
+
+                    break;
+
+                case "sbi":
+                    title.textContent = 'Username: kumargopesh (Account No: 00000041539886046 & IFSC: SBIN0000127 & MICR Code :	845002607 & (Sec Ques) Where you met your spouse: Vector (Hint => City))';
+                    //description.textContent = 'Login/Profile Password: Gopesh222₹/Gopesh111₹ (Madhubani Main Branch, Red Cross, 847211)';
+                    description.innerHTML = 'Login/Profile Password: Gopesh222₹/Gopesh111₹ (Madhubani Main Branch, Red Cross, 847211) <br> <a target = "_blank" href="https://retail.onlinesbi.sbi/retail/login.htm">Internet Banking</a>';
+                    break;
+
+
+                // Insurance and Investment
+
+                case "apy":
+                    title.textContent = 'PRAN: 500696981479';
+                    description.textContent = 'Password: OTP (8505949039)';
+
+                    break;
+
+                case "epf":
+                    title.textContent = 'UAN: 101589172921';
+                    description.textContent = 'Password: Gopesh11$ (Passbook for Member Id : [GNGGN19505400000020384])';
+
+                    break;
+
+                case "nps":
+                    title.textContent = 'PRAN: 110195701405';
+                    description.textContent = 'Password: Gopesh111%';
+
+                    break;
+
+                case "pli":
+                    title.textContent = 'Username: 81536204';
+                    description.textContent = 'Password: Gopesh111_';
+
+                    break;
+
+                case "ppf":
+                    title.textContent = 'Account: 63910PPF000000000015';
+                    description.textContent = 'Linked with Union Bank (Branch: Opposite Post office, 847211)';
+
+                    break;
+
+
+                // My Details
+                case "aadhar":
+                    title.textContent = '958909176656';
+                    description.textContent = 'Contact: 8505949039';
+
+                    break;
+
+                case "itr":
+                    title.textContent = 'PAN(username): DVHPK6223G';
+                    description.textContent = 'Pass: Gopesh1% (Primary No: 8505949039)';
+
+                    break;
+
+
+                case "pan":
+                    title.textContent = 'DVHPK6223G';
+                    description.textContent = 'Contact: 8505949039';
+
+                    break;
+
+                case "passport":
+                    title.textContent = 'Number: X9482821';
+                    description.textContent = 'User ID and Passw: KUMARGOPESH64@GMAIL.COM & Gopesh111$';
+
+                    break;
+
+                case "voterid":
+                    title.textContent = 'User ID: 8505949039 (Voter ID: YEZ1849272)';
+                    description.textContent = 'Password: Gopesh11!';
+
+                    break;
+
+                default: break;
+            }
+
+            detailsBox.style.display = 'block';
+        });
+
+        $(window).on('keydown', function (event) {
+            if (event.keyCode == 123) {
+                //alert('Entered F12');
+                return false;
+            }
+            else if (event.ctrlKey && event.shiftKey && event.keyCode == 73) {
+                //alert('Entered ctrl+shift+i')
+                return false;  //Prevent from ctrl+shift+i
+            }
+            else if (event.ctrlKey && event.keyCode == 73) {
+                //alert('Entered ctrl+shift+i')
+                return false;  //Prevent from ctrl+shift+i
+            }
+        });
+        $(document).on("contextmenu", function (e) {
+            //alert('Right Click Not Allowed')
+            e.preventDefault();
+        });
+
+    </script>
+
+</body>
+</html>
