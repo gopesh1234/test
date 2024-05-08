@@ -249,9 +249,15 @@
                     <option value="ppf">PPF</option>
 
                     <option style="background-color:orange; color:white; font-size:larger" value="insur" disabled>Insurance</option>
+                    
+                    <option value="navi">Navi Health</option>
+                    <option value="pbh">PB Health</option>
+                    <option value="pbt">PB Term</option>
+
 
                     <option style="background-color:orange; color:white; font-size:larger" value="other" disabled>My Details</option>
 
+                    <option value="personal">All Details</option>
                     <option value="aadhar">Aadhar</option>
                     <option value="itr">ITR</option>
                     <option value="pan">PAN</option>
@@ -574,7 +580,7 @@
 
                 case "nps":
                     title.textContent = 'PRAN: 110195701405';
-                    description.textContent = 'Password: Gopesh111%';
+                    description.textContent = 'Password: Gopesh222%';
 
                     break;
 
@@ -592,9 +598,15 @@
 
 
                 // My Details
+                case "personal":
+                    title.textContent = 'Aadhar: 958909176656';
+                    description.textContent = 'Contact: 8505949039 & 7004038529 || Email: kumargopesh64@gmail.com & gopeshk33@gmail.com || PAN: DVHPK6223G || Passport: X9482821 || Voter ID: YEZ1849272';
+
+                    break;
+
                 case "aadhar":
                     title.textContent = '958909176656';
-                    description.textContent = 'Contact: 8505949039';
+                    description.textContent = 'Contact: 8505949039 ';
 
                     break;
 
@@ -629,24 +641,24 @@
             detailsBox.style.display = 'block';
         });
 
-        $(window).on('keydown', function (event) {
-            if (event.keyCode == 123) {
-                //alert('Entered F12');
-                return false;
-            }
-            else if (event.ctrlKey && event.shiftKey && event.keyCode == 73) {
-                //alert('Entered ctrl+shift+i')
-                return false;  //Prevent from ctrl+shift+i
-            }
-            else if (event.ctrlKey && event.keyCode == 73) {
-                //alert('Entered ctrl+shift+i')
-                return false;  //Prevent from ctrl+shift+i
-            }
-        });
-        $(document).on("contextmenu", function (e) {
-            //alert('Right Click Not Allowed')
-            e.preventDefault();
-        });
+        //$(window).on('keydown', function (event) {
+        //    if (event.keyCode == 123) {
+        //        //alert('Entered F12');
+        //        return false;
+        //    }
+        //    else if (event.ctrlKey && event.shiftKey && event.keyCode == 73) {
+        //        //alert('Entered ctrl+shift+i')
+        //        return false;  //Prevent from ctrl+shift+i
+        //    }
+        //    else if (event.ctrlKey && event.keyCode == 73) {
+        //        //alert('Entered ctrl+shift+i')
+        //        return false;  //Prevent from ctrl+shift+i
+        //    }
+        //});
+        //$(document).on("contextmenu", function (e) {
+        //    //alert('Right Click Not Allowed')
+        //    e.preventDefault();
+        //});
 
     </script>
 
