@@ -244,12 +244,13 @@
 
                     <option value="apy">4.1 APY</option>
                     <option value="epf">4.2 EPF</option>
-                    <option value="nps">4.3 NPS</option>
-                    <option value="pli">4.4 PLI</option>
-                    <option value="ppf">4.5 PPF</option>
+                    <option value="lock">4.3 MOM Locker</option>
+                    <option value="nps">4.4 NPS</option>
+                    <option value="pli">4.5 PLI</option>
+                    <option value="ppf">4.6 PPF</option>
 
                     <option style="background-color:orange; color:white; font-size:larger" value="insur" disabled>5 Insurance</option>
-                    
+
                     <option value="navi">5.1 Navi Health</option>
                     <option value="pbh">5.2 PB Health</option>
                     <option value="pbt">5.3 PB Term</option>
@@ -289,7 +290,6 @@
             }
         }
 
-        // Add event listeners to toggle buttons
         document.getElementById("savingsButton").addEventListener("click", function () {
             toggleSections("savings");
         });
@@ -363,6 +363,7 @@
                     localStorage.setItem("savingsData", JSON.stringify(data));
                 }
                 totalSavings += (newAmount - amount);
+
                 updateTotal(totalSavings);
             }
         }
@@ -412,6 +413,7 @@
                 removeBlur();
 
                 var savedData = getData();
+
                 savedData.forEach(function (item) {
                     addSavingsOption(item.name, item.amount);
                     totalSavings += item.amount;
@@ -576,6 +578,12 @@
                 case "epf":
                     title.textContent = 'UAN: 101589172921';
                     description.textContent = 'Password: Gopesh11$ (Passbook for Member Id : [GNGGN19505400000020384])';
+
+                    break;
+
+                case "lock":
+                    title.textContent = 'No: G 74';
+                    //description.textContent = 'Password: Gopesh11$ (Passbook for Member Id : [GNGGN19505400000020384])';
 
                     break;
 
