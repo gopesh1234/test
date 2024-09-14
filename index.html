@@ -181,10 +181,10 @@
 
     <div class="container blur">
         <div id="toggleButtons">
-            <button id="savingsButton" class="toggleButton">Savings</button>
+            <button id="savingsButton" class="toggleButton" style="display:none;">Savings</button>
             <button id="textBoxButton" class="toggleButton">Details</button>
         </div>
-        <div id="savingsSection" class="section">
+        <div id="savingsSection" class="section" style="display:none;">
             <hr />
             <div id="total" style="font-weight:bold"></div>
             <hr />
@@ -208,7 +208,7 @@
             </ul>
         </div>
 
-        <div id="textBoxSection" class="section" style="display: none; height: 325px;">
+        <div id="textBoxSection" class="section" style="height: 325px;">
             <div class="dropdown-container">
                 <select id="dropdown" style="display: block; text-align:center; box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px">
                     <option value="" selected disabled>Select an option</option>
@@ -223,10 +223,11 @@
 
                     <option style="background-color:orange; color:white; font-size:larger" value="insur" disabled>2 Social Media</option>
 
-                    <option value="git">2.1 GIT</option>
-                    <option value="insta">2.2 Insta</option>
-                    <option value="link">2.3 LinkedIn</option>
-                    <option value="udemy">2.4 Udemy</option>
+                    <option value="git">2.1 GIT1</option>
+                    <option value="git">2.2 GIT2</option>
+                    <option value="insta">2.3 Insta</option>
+                    <option value="link">2.4 LinkedIn</option>
+                    <option value="udemy">2.5 Udemy</option>
 
                     <option style="background-color:orange; color:white; font-size:larger" value="banks" disabled>3 Banks</option>
 
@@ -244,10 +245,9 @@
 
                     <option value="apy">4.1 APY</option>
                     <option value="epf">4.2 EPF</option>
-                    <option value="lock">4.3 MOM Locker</option>
-                    <option value="nps">4.4 NPS</option>
-                    <option value="pli">4.5 PLI</option>
-                    <option value="ppf">4.6 PPF</option>
+                    <option value="nps">4.3 NPS</option>
+                    <option value="pli">4.4 PLI</option>
+                    <option value="ppf">4.5 PPF</option>
 
                     <option style="background-color:orange; color:white; font-size:larger" value="insur" disabled>5 Insurance</option>
 
@@ -281,15 +281,18 @@
             var savingsSection = document.getElementById("savingsSection");
             var textBoxSection = document.getElementById("textBoxSection");
 
-            if (sectionToShow === "savings") {
-                savingsSection.style.display = "block";
-                textBoxSection.style.display = "none";
-            } else if (sectionToShow === "textBox") {
-                savingsSection.style.display = "none";
-                textBoxSection.style.display = "block";
-            }
+            textBoxSection.style.display = "block";
+
+            //if (sectionToShow === "savings") {
+            //    savingsSection.style.display = "block";
+            //    textBoxSection.style.display = "none";
+            //} else if (sectionToShow === "textBox") {
+            //    savingsSection.style.display = "none";
+            //    textBoxSection.style.display = "block";
+            //}
         }
 
+        // Add event listeners to toggle buttons
         document.getElementById("savingsButton").addEventListener("click", function () {
             toggleSections("savings");
         });
@@ -363,7 +366,6 @@
                     localStorage.setItem("savingsData", JSON.stringify(data));
                 }
                 totalSavings += (newAmount - amount);
-
                 updateTotal(totalSavings);
             }
         }
@@ -413,7 +415,6 @@
                 removeBlur();
 
                 var savedData = getData();
-
                 savedData.forEach(function (item) {
                     addSavingsOption(item.name, item.amount);
                     totalSavings += item.amount;
@@ -460,7 +461,7 @@
 
                 case "netflix":
                     title.textContent = 'Username: kumargopesh64@gmail.com';
-                    description.innerHTML = 'Password: Gopesh111# <br> <a target = "_blank" href="https://www.netflix.com/">Netflix</a>';
+                    description.innerHTML = 'Password: Gopesh11# <br> <a target = "_blank" href="https://www.netflix.com/">Netflix</a>';
 
                     break;
 
@@ -477,8 +478,14 @@
                     break;
 
                 // Social Media
-                case "git":
+                case "git1":
                     title.textContent = 'Username: kumargopesh64@gmail.com';
+                    description.textContent = 'Password: Gopesh111%';
+
+                    break;
+
+                case "git2":
+                    title.textContent = 'Username: gopeshk33@gmail.com';
                     description.textContent = 'Password: Gopesh111%';
 
                     break;
@@ -581,21 +588,15 @@
 
                     break;
 
-                case "lock":
-                    title.textContent = 'No: G 74';
-                    //description.textContent = 'Password: Gopesh11$ (Passbook for Member Id : [GNGGN19505400000020384])';
-
-                    break;
-
                 case "nps":
                     title.textContent = 'PRAN: 110195701405';
-                    description.textContent = 'Password: Gopesh222%';
+                    description.textContent = 'Password: Gopesh33$-';
 
                     break;
 
                 case "pli":
                     title.textContent = 'Username: 81536204';
-                    description.textContent = 'Password: Gopesh111_';
+                    description.textContent = 'Password: Gopesh222%-';
 
                     break;
 
@@ -649,25 +650,6 @@
 
             detailsBox.style.display = 'block';
         });
-
-        //$(window).on('keydown', function (event) {
-        //    if (event.keyCode == 123) {
-        //        //alert('Entered F12');
-        //        return false;
-        //    }
-        //    else if (event.ctrlKey && event.shiftKey && event.keyCode == 73) {
-        //        //alert('Entered ctrl+shift+i')
-        //        return false;  //Prevent from ctrl+shift+i
-        //    }
-        //    else if (event.ctrlKey && event.keyCode == 73) {
-        //        //alert('Entered ctrl+shift+i')
-        //        return false;  //Prevent from ctrl+shift+i
-        //    }
-        //});
-        //$(document).on("contextmenu", function (e) {
-        //    //alert('Right Click Not Allowed')
-        //    e.preventDefault();
-        //});
 
     </script>
 
